@@ -7,7 +7,7 @@ import AddTraining from './AddTraining';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {customers: [], trainings: [], open: false, message: ''}
+        this.state = {trainings: [], open: false, message: ''}
 }
 
 componentDidMount() {
