@@ -22,7 +22,7 @@ class App extends Component {
         </AppBar>
             
         <BrowserRouter>
-          <div class="Frame" style={{marginLeft:24}}>
+          <div className="Frame" style={{marginLeft:24}}>
           <Link to="/" style={{textDecoration:'none'}}><Button style={{marginTop:10, marginBottom: 10, marginRight: 5}} variant="outlined">Home</Button></Link>
           <Link to="/customers" style={{textDecoration:'none'}}><Button style={{marginTop:10, marginBottom: 10, marginRight: 5}} variant="outlined">Customers</Button></Link>
           <Link to="/trainings" style={{textDecoration:'none'}}><Button style={{marginTop:10, marginBottom: 10, marginRight: 5}} variant="outlined">Trainings</Button></Link>

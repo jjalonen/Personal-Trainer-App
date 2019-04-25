@@ -52,7 +52,7 @@ class AddTraining extends Component {
         >
           <DialogTitle id="form-dialog-title">Add Training to Customer</DialogTitle>
           <DialogContent>            
-            <TextField autoFocus margin="dense" name="date" value={this.state.date} onChange={this.handleChange} label="Date" fullWidth />
+            <TextField autoFocus margin="dense" name="date" value={this.state.date} onChange={this.handleChange} label="Date (YYYY-MM-DD)" fullWidth />
             <TextField margin="dense" name="duration" value={this.state.duration} onChange={this.handleChange} label="Duration" fullWidth />
             <TextField margin="dense" name="activity" value={this.state.activity} onChange={this.handleChange} label="Activity" fullWidth />
             

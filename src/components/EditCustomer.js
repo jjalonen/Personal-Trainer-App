@@ -6,11 +6,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
-//tästä Add painike, save ja lomake
-
-//https://material-ui.com/demos/dialogs/
-
 class EditCustomer extends Component {
 
     state = {

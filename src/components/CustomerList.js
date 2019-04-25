@@ -5,13 +5,13 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditCustomer from './EditCustomer';
 import AddCustomer from './AddCustomer';
-import AddTraining from './AddTraining';
+
 
 
 class CustomerList extends Component {
     constructor(props) {
         super(props);
-        this.state = {customers: [], trainings: [], open: false, message: ''}
+        this.state = {customers: [], open: false, message: ''}
 }
 
 componentDidMount() {
@@ -22,21 +22,6 @@ fetchCustomers = () => {
     fetch('https://customerrest.herokuapp.com/api/customers')
     .then (response => response.json())
     .then (jsondata => this.setState({customers: jsondata.content}))
-}
-
-fetchTrainings = () => {
-    fetch('https://customerrest.herokuapp.com/api/trainings')
-    .then (response => response.json())
-    .then (jsondata => this.setState({trainings: jsondata.content}))
-}
-
-deleteCustomer = (link) => {
-    if (window.confirm("Are you sure?")) {
-    fetch(link, {method: 'DELETE'})
-    .then(response => this.fetchCustomers())
-    .then(response => this.setState({open:true, message:'Customer deleted'}))
-    .catch(err => console.error(err))
-    }
 }
 
 addCustomer = (newCustomer) => {
@@ -65,19 +50,15 @@ editCustomer = (link, customer) => {
         .catch(err => console.error(err));
 }
 
-addTraining(training) {
-    fetch('https://customerrest.herokuapp.com/api/trainings',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(training)
-      })
-        .then(response => this.fetchCustomers())
-        .then(response => this.setState({open:true, message:'New training saved'}))
-        .catch(err => console.error(err))
-  }
+deleteCustomer = (link) => {
+    if (window.confirm("Are you sure?")) {
+    fetch(link, {method: 'DELETE'})
+    .then(response => this.fetchCustomers())
+    .then(response => this.setState({open:true, message:'Customer deleted'}))
+    .catch(err => console.error(err))
+    }
+}
+
 
 handleClose= () => {
     this.setState({open:false})
@@ -86,14 +67,6 @@ handleClose= () => {
     render() {
         const columns = [
 
-            {
-                Header: '',
-                filterable: false,
-                sortable: false,
-                width: 150,
-                accessor: 'links.0.href',
-                Cell: ({value}) => <AddTraining addTraining={this.addTraining} fetchCustomers={this.fetchCustomers} customer = {(value)}/>
-            },
             {
                 Header: 'Firstname',
                 accessor: 'firstname'

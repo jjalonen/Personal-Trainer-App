@@ -17,14 +17,15 @@ componentDidMount() {
 }
 
 fetchTrainings = () => {
-    fetch('https://customerrest.herokuapp.com/api/trainings')
+    fetch('https://customerrest.herokuapp.com/gettrainings')
     .then (response => response.json())
-    .then (jsondata => this.setState({trainings: jsondata.content}))
+    .then (jsondata => this.setState({trainings: jsondata}))
 }
 
 deleteTraining = (link) => {
     if (window.confirm("Are you sure?")) {
-    fetch(link, {method: 'DELETE'})
+    fetch('https://customerrest.herokuapp.com/api/trainings/' + link,
+    {method: 'DELETE'})
     .then(response => this.fetchTrainings())
     .then(response => this.setState({open:true, message:'Training deleted'}))
     .catch(err => console.error(err))
@@ -54,13 +55,21 @@ handleClose= () => {
             {
                 Header: 'Activity',
                 accessor: 'activity'
-            },       
+            },
+            {
+                Header: 'Firstname',
+                accessor: 'customer.firstname'
+            },      
+            {
+                Header: 'Lastname',
+                accessor: 'customer.lastname'
+            },      
             {
                 Header: '',
                 filterable: false,
                 sortable: false,
                 width: 150,
-                accessor: 'links[0].href',
+                accessor: 'id',
                 Cell: ({value}) => <Button color="secondary" variant="contained" size="small" onClick={() => this.deleteTraining(value)}>DELETE TRAINING</Button>
             }
         ]
